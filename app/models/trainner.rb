@@ -1,0 +1,2 @@
+class Trainner < User
+end
