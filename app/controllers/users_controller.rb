@@ -6,22 +6,19 @@ class UsersController < ApplicationController
   def create
     user = User.new(set_params)
     if user.save
-      render json: { message:"User Created", data: user }
+      render json: { message: "User Created", data: user }
     else
       render json: { errors: user.errors.full_messages }
     end
   end
-  # def index 
-  #    @users=User.all
-  #    render json: @users
-  # end  
-  # ..................Login user......................
+
+  # ............Login user......................
   def user_login
-    if user=User.find_by(email: params[:email], password_digest: params[:password_digest])
-      token= jwt_encode(user_id: user.id)
+    if user = User.find_by(email: params[:email], password_digest: params[:password_digest])
+      token = jwt_encode(user_id: user.id)
       render json: { message: "Logged In Successfully..", token: token }
     else
-      render json: { error: "Please Check your Email And Password....." }     
+      render json: { error: "Please Check your Email And Password....." }
     end
   end
   
@@ -31,13 +28,13 @@ class UsersController < ApplicationController
     if user.update(update_params)
       render json: { message: 'Updated successfully......', data: user }
     else
-      render json: { errors: user.errors.full_messages }      
+      render json: { errors: user.errors.full_messages }
     end
   end
 
   # ..................Destroy user......................
   def destroy
-    user=User.destroy(@current_user.id)
+    user = User.destroy(@current_user.id)
     render json: { message: 'Deleted successfully', data: user }
   end
 
@@ -46,11 +43,13 @@ class UsersController < ApplicationController
     render json: @current_user
   end
 
-  private 
+  private
   def set_params
-    params.permit(:name,:email,:password_digest,:username,:contact_no,:state,:age,:type)
+    params.permit(:name, :email, :password_digest, :username, :contact_no, :state, :age, :type)
   end
+
   def update_params
-    params.permit(:name,:email,:password_digest,:username,:contact_no,:state,:age,:type)
+    params.permit(:name, :email, :password_digest, :username, :contact_no, :state, :age, :type)
   end
 end
+
