@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :find_id, only: [:show, :update, :destroy]
+ before_action :find_id, only: [:show, :update, :destroy]
 
   # Show Course
   def index
@@ -107,3 +107,4 @@ class CoursesController < ApplicationController
     end
   end
 end
+

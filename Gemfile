@@ -29,7 +29,7 @@ gem "jbuilder"
 
 gem "bcrypt"
 gem "jwt"
-# gem "active_model_serializers"
+gem "active_model_serializers"
 gem "byebug"
 
 

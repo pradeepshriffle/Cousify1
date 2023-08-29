@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create, :user_login]
-  # protect_from_forgery
-
+  
+  
   # ..................Create ......................
   def create
     user = User.new(set_params)
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       render json: { errors: user.errors.full_messages }
     end
   end
-
+  
   # ............Login user......................
   def user_login
     if user = User.find_by(email: params[:email], password_digest: params[:password_digest])
@@ -31,23 +31,23 @@ class UsersController < ApplicationController
       render json: { errors: user.errors.full_messages }
     end
   end
-
+  
   # ..................Destroy user......................
   def destroy
     user = User.destroy(@current_user.id)
     render json: { message: 'Deleted successfully', data: user }
   end
-
+  
   # ..................Show user......................
   def show
     render json: @current_user
   end
-
+  
   private
   def set_params
     params.permit(:name, :email, :password_digest, :username, :contact_no, :state, :age, :type)
   end
-
+  
   def update_params
     params.permit(:name, :email, :password_digest, :username, :contact_no, :state, :age, :type)
   end

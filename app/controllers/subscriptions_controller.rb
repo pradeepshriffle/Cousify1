@@ -26,7 +26,7 @@ class SubscriptionsController < ApplicationController
      render json: { error: subscription.errors.full_messages }
     end
    else
-    render json: { message: 'ID NOT Found' }
+    render json: { message: 'Not inactive course  subscribe or that particular course id is not present' }
    end
   end
     
