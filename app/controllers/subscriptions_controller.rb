@@ -26,7 +26,7 @@ class SubscriptionsController < ApplicationController
      render json: { error: subscription.errors.full_messages }
     end
    else
-    render json: { message: 'Cannot add inactive courses' }
+    render json: { message: 'ID NOT Found' }
    end
   end
     
@@ -53,14 +53,14 @@ class SubscriptionsController < ApplicationController
   def destroy
    if @subscription.destroy
     render json: {message: "subscription has been deleted.... "}
-  else
+   else
    render json: {message: "subscription not deleted"}
    end
   end
   
   private
   def set_params
-    params.require(:course).permit(:course_id ,:customer_name,:mobile) 
+    params.permit(:course_id ,:customer_name,:mobile) 
     #  params.permit(:course_id)
   end
   

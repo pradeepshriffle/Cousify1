@@ -1,7 +1,7 @@
 class Subscription < ApplicationRecord
  belongs_to :user
  belongs_to :course
- validates :course_id, presence: true, uniqueness: {scope: :user_id}
+ validates :course_id,:customer_name,:mobile, presence: true, uniqueness: {scope: :user_id}
  validate :learner_only_purchase_courses
  
 
